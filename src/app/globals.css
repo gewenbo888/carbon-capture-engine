@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #04070d;
+  --azure: #37b6f6;
+  --emerald: #2bd48b;
+  --ember: #f5923c;
+  --violet: #9a7dfa;
+  --ghost: #e4edf2;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--ink);
+  color: var(--ghost);
+}
+
+body {
+  background-color: #04070d;
+  background-image:
+    radial-gradient(ellipse 1200px 680px at 16% -12%, rgba(55, 182, 246, 0.18), transparent 60%),
+    radial-gradient(ellipse 980px 560px at 92% 2%, rgba(154, 125, 250, 0.10), transparent 62%),
+    radial-gradient(ellipse 1400px 820px at 50% 126%, rgba(43, 212, 139, 0.14), transparent 60%);
+  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: 0.004em;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: rgba(55, 182, 246, 0.4); color: #f3f8fb; }
+
+/* geometric machined display — the typeface of a planetary control surface */
+.display { font-family: "Sora", ui-sans-serif, system-ui, sans-serif; font-weight: 600; letter-spacing: -0.02em; }
+.zh { font-family: "Noto Sans SC", sans-serif; font-weight: 500; letter-spacing: 0; }
+.label-mono {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  letter-spacing: 0.26em; text-transform: uppercase; font-size: 0.62rem; color: #a9def8;
+}
+.mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* luminous interface text — the glow of an active instrument */
+.azure-text {
+  color: #c3e6ff;
+  text-shadow: 0 0 24px rgba(55, 182, 246, 0.62), 0 0 70px rgba(31, 127, 214, 0.34);
+}
+.emerald-text {
+  color: #9af2cb;
+  text-shadow: 0 0 22px rgba(43, 212, 139, 0.55);
+}
+.ember-text {
+  color: #ffce9c;
+  text-shadow: 0 0 22px rgba(245, 146, 60, 0.55);
+}
+.violet-text {
+  color: #d7c8ff;
+  text-shadow: 0 0 22px rgba(154, 125, 250, 0.55);
+}
+
+/* holographic panel — frosted glass instrument floating over the planet */
+.holo {
+  background: linear-gradient(155deg, rgba(16, 26, 42, 0.66), rgba(6, 10, 18, 0.92));
+  border: 1px solid rgba(169, 222, 248, 0.12);
+  backdrop-filter: blur(11px);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+.holo:hover { border-color: rgba(55, 182, 246, 0.42); box-shadow: 0 0 44px -16px rgba(55, 182, 246, 0.55); }
+
+/* terminal panel — a sharper machined console surface */
+.terminal {
+  background: linear-gradient(180deg, rgba(11, 19, 31, 0.92), rgba(6, 10, 18, 0.97));
+  border: 1px solid rgba(169, 222, 248, 0.14);
+  box-shadow: inset 0 1px 0 rgba(169, 222, 248, 0.06);
+}
+
+/* spectrum divider — azure → emerald → violet, the band of a planetary readout */
+.rule-azure {
+  background: linear-gradient(90deg, transparent, rgba(55,182,246,0.7) 16%, rgba(43,212,139,0.5) 50%, rgba(154,125,250,0.5) 84%, transparent);
+}
+
+/* faint engineering grid backdrop — the graticule of a climate map */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(169, 222, 248, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(169, 222, 248, 0.045) 1px, transparent 1px);
+  background-size: 46px 46px;
+}
+.grid-fine {
+  background-image:
+    linear-gradient(rgba(169, 222, 248, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(169, 222, 248, 0.05) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* animated dash flow — carbon moving through a flux line */
+@keyframes flow { to { stroke-dashoffset: -36; } }
+.flow { stroke-dasharray: 4 8; animation: flow 1.4s linear infinite; }
+
+@keyframes pulseGlow { 0%,100% { opacity: 0.45; } 50% { opacity: 1; } }
+.pulse { animation: pulseGlow 2.4s ease-in-out infinite; }
+
+@keyframes drift { 0% { transform: translateY(0); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0); } }
+.drift { animation: drift 7s ease-in-out infinite; }
+
+@keyframes riseIn { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+.rise-in { animation: riseIn 0.9s cubic-bezier(0.2,0.7,0.2,1) both; }
+.lang-fade { animation: riseIn 0.42s ease both; }
+
+/* scanning console ticker */
+@keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.ticker { animation: ticker 46s linear infinite; }
+
+/* slow rotation for orbital / planetary systems */
+@keyframes spinslow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spinslow 26s linear infinite; transform-origin: center; }
+@keyframes spinrev { to { transform: rotate(-360deg); } }
+.spin-rev { animation: spinrev 34s linear infinite; transform-origin: center; }
+
+/* scan-line sweep across an instrument surface */
+@keyframes scan { 0% { transform: translateY(-100%); } 100% { transform: translateY(900%); } }
+.scan { animation: scan 5s linear infinite; }
+
+/* shimmer pass for luminous atmospheric edges */
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+.shimmer {
+  background: linear-gradient(100deg, transparent 30%, rgba(169,222,248,0.5) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: shimmer 3.4s linear infinite;
+}
+
+/* slow breathing — atmosphere / a planet exhaling */
+@keyframes breathe { 0%,100% { transform: scale(1); opacity: 0.85; } 50% { transform: scale(1.04); opacity: 1; } }
+.breathe { animation: breathe 6s ease-in-out infinite; }
+
+/* blinking caret */
+@keyframes blink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+.caret { animation: blink 1s step-end infinite; }
+
+::-webkit-scrollbar { width: 10px; background: #04070d; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #13202f, #1f7fd6); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #37b6f6; }
